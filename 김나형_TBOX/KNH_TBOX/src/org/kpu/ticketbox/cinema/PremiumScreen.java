@@ -10,7 +10,7 @@ public class PremiumScreen extends Screen{
 		System.out.println("-------------------");
 		System.out.printf("%s 소개\n", strMovieName);
 		System.out.println("-------------------");
-		System.out.println("영화관 : 애니메이션영화 1관");
+		System.out.println("영화관 : 프리미엄 영화 1관");
 		System.out.printf("줄거리 : %s\n", strMovieStory);
 		System.out.printf("가격: %d원\n", nTicketPrice);
 	}

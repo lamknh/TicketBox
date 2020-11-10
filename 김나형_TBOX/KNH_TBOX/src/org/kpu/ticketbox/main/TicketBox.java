@@ -11,12 +11,12 @@ public class TicketBox {
 	
 	public void initScreen() {
 		//Screen( 영화제목 , 영화 줄거리 , 티켓가격 , 좌석 rowMax ), 좌석 colMax
-		familyScreen = new FamilyScreen ("어바웃 타임 ", 
-				"모태솔로 팀은 성인이 된 날 , 아버지로부터 ", 8000, 10, 10);
+		familyScreen = new FamilyScreen ("어거스트 러쉬 ", 
+				"눈을 감으면 세상의 모든 소리가 음악이 되는 아이 ", 8000, 10, 10);
 		animationScreen = new AnimationScreen ("센과 치히로의 행방불명 ", 
-				"인간에게는 금지된 신들의 세계로 오게 된 치히로 .", 10000, 10, 10);
+				"", 10000, 10, 10);
 		premiumScreen = new PremiumScreen ("스타트렉 ",
-				"세계 각국의 정부와 경제가 완전히 붕괴된 미래가 다가온다 .", 25000, 5, 5);
+				"위험한 미션들을 무사히 수행한 후 평화롭게 우주를 항해하던 거대 함선 엔터프라이즈호.", 25000, 5, 5);
 	}
 
 	public Screen selectScreen() {

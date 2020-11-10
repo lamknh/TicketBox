@@ -10,15 +10,27 @@ public class MovieTicket {
 	private char cStatus;// 좌석 상태 EMPTY, RESERVED, PAY_COMPLETION
 	
 	public int getnRow () {
-		
+		return nRow;
 	}
 	public int getnCol () {
-		
+		return nCol;
 	}
 	public char getcStatus () {
-		
+		return cStatus;
 	}
 	public void setcStatus (char cStatus) {
+		this.cStatus = cStatus;
+	}
+	
+	private int nReservedId;// 예약 번호
+	public void setSeat (int row, int col) { // 좌석번호저장
+		row = nRow;
+		col = nCol;
+	}
+	public void setnReservedId (int id) { // 예약번호저장
+		nReservedId = id;
+	}
+	public void getnReservedId () {// 예약번호 읽기
 		
 	}
 }

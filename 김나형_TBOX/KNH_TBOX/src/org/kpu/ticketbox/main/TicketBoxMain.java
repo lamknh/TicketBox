@@ -25,14 +25,17 @@ public class TicketBoxMain {
 			try {
 				int select = scan.nextInt();
 				switch(select) {
-				case 1 : // 스크린 상영 영화 정보 보기
+				case 1: // 스크린 상영 영화 정보 보기
 					screen.showMovieInfo();
 					break;
-				case 2 :
+				case 2:
 					screen.showSeatMap();
 					break;
+				case 3:
+					screen.reserveTicket();
+					break;
 				case 7:
-					ticketBox.selectScreen();				
+					bMainMenu = true;
 				}
 			} catch (Exception e) {
 				System.out.println("잘못 입력하셨습니다.");
