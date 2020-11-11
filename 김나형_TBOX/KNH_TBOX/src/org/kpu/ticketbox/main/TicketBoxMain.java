@@ -34,6 +34,11 @@ public class TicketBoxMain {
 				case 3:
 					screen.reserveTicket();
 					break;
+				case 4:
+					screen.changeTicket();
+					break;
+				case 5:
+					screen.payment();
 				case 7:
 					bMainMenu = true;
 				}

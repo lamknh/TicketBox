@@ -32,7 +32,7 @@ public class MovieTicket {
 	public void setnReservedId (int id) { // 예약번호저장
 		nReservedId = id;
 	}
-	public void getnReservedId() {// 예약번호 읽기
-		System.out.print(nReservedId);
+	public int getnReservedId() {// 예약번호 읽기 ////////////////////////////
+		return nReservedId;
 	}
 }
