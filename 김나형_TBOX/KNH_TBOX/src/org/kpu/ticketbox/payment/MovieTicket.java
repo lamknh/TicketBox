@@ -9,6 +9,8 @@ public class MovieTicket {
 	private int nCol;// 좌석 열
 	private char cStatus;// 좌석 상태 EMPTY, RESERVED, PAY_COMPLETION
 	
+	private int nReservedId;// 예약 번호
+	
 	public int getnRow () {
 		return nRow;
 	}
@@ -22,15 +24,15 @@ public class MovieTicket {
 		this.cStatus = cStatus;
 	}
 	
-	private int nReservedId;// 예약 번호
 	public void setSeat (int row, int col) { // 좌석번호저장
 		row = nRow;
 		col = nCol;
+		cStatus = SEAT_RESERVED_MARK;
 	}
 	public void setnReservedId (int id) { // 예약번호저장
 		nReservedId = id;
 	}
-	public void getnReservedId () {// 예약번호 읽기
-		
+	public void getnReservedId() {// 예약번호 읽기
+		System.out.print(nReservedId);
 	}
 }
