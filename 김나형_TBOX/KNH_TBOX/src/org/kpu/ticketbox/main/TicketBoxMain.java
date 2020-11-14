@@ -39,6 +39,10 @@ public class TicketBoxMain {
 					break;
 				case 5:
 					screen.payment();
+					break;
+				case 6:
+					screen.payment();
+					break;
 				case 7:
 					bMainMenu = true;
 				}

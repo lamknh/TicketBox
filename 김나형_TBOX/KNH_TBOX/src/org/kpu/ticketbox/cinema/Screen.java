@@ -1,4 +1,7 @@
 package org.kpu.ticketbox.cinema;
+import org.kpu.ticketbox.payment.BankTransfer;
+import org.kpu.ticketbox.payment.CardPay;
+import org.kpu.ticketbox.payment.MobilePay;
 import org.kpu.ticketbox.payment.MovieTicket;
 import org.kpu.ticketbox.payment.Pay;
 import org.kpu.ticketbox.payment.Receipt;
@@ -40,6 +43,7 @@ public abstract class Screen {
 		System.out.println(" 3. 좌석 예약 하기");
 		System.out.println(" 4. 좌석 변경 하기");
 		System.out.println(" 5. 좌석 결제 하기");
+		System.out.println(" 6. 티켓 출력 하기");
 		System.out.println(" 7. 메인 메뉴 이동");
 	}
 	
@@ -122,6 +126,7 @@ public abstract class Screen {
 	private HashMap <Integer, Receipt> receiptMap = new HashMap <Integer, Receipt>();
 	
 	public void payment() { // 결제 하기
+		BankTransfer bt = new BankTransfer();
 		System.out.println(" [  좌석 예약 결제  ]");
 		System.out.print("예약 번호 입력 : ");
 		int rnum = scan.nextInt();
@@ -131,35 +136,82 @@ public abstract class Screen {
 				if(seatArray[i][j].getnReservedId() == rnum) {
 					System.out.println();
 					System.out.println("-------------------");
-					System.out.println("	결제 방식 선택");
+					System.out.println("    결제 방식 선택");
 					System.out.println("-------------------");
 					System.out.printf(" %d. 은행 이체\n", Pay.BANK_TRANSFER_PAYMENT);
 					System.out.printf(" %d. 카드 결제\n", Pay.CREDIT_CARD_PAYMENT);
 					System.out.printf(" %d. 모바일 결제\n", Pay.MOBILE_PHONE_PAYMENT);
 					System.out.print("결제 방식 입력(1~3) : ");
 					int pay = scan.nextInt();
+					System.out.println();
 					
 					switch(pay) {
 					case Pay.BANK_TRANSFER_PAYMENT:
+						System.out.println(" [ 은행 이체 ]");
+						System.out.print("이름 입력 : ");
+						String name = scan.next();
+						System.out.print("은행 번호 입력(12자리수) : "); //12자릿수 예외 설정하기
+						String payment = scan.next();
 						
+						System.out.printf("은행 결제가 완료되었습니다. : %.1f원\n", 
+								nTicketPrice * (1 + BankTransfer.BANK_TRANSFER_COMMISION));
+						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						
+						Receipt receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
+						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
 						break;
 					case Pay.CREDIT_CARD_PAYMENT:
+						System.out.println(" [ 카드 결제 ]");
+						System.out.print("이름 입력 : ");
+						name = scan.next();
+						System.out.print("카드 번호 입력(12자리수) : ");
+						payment = scan.next();
 						
+						System.out.printf("카드 결제가 완료되었습니다. : %.1f원\n",
+								(double)nTicketPrice * (1 + CardPay.CARD_COMMISION));
+						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						
+						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
+						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
 						break;
 					case Pay.MOBILE_PHONE_PAYMENT:
+						System.out.println(" [ 모바일 결제 ]");
+						System.out.print("이름 입력 : ");
+						name = scan.next();
+						System.out.print("핸드폰 번호 입력(12자리수) : ");
+						payment = scan.next();
 						
+						System.out.printf("모바일 결제가 완료되었습니다. : %.1f원\n",
+								nTicketPrice * (1 + MobilePay.MOBILE_COMMISION));
+						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						
+						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
+						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
 						break;
 					}
 				}
 			}
-		}	
-		
-		
-		receiptMap.put(rnum, );// 키 예약 번호 ))+ Receipt 객체
+		}
 	}
 	
 	//티켓 영수증 출력
 	public void printTicket () {
+		System.out.println(" [ 좌석 티켓 출력 ]");
+		System.out.print("예약 번호 입력 : ");
+		int rnum = scan.nextInt();
+		
+		for(int i = 0; i < nColMax; i++) {
+			for(int j = 0; j < nRowMax; j++) {
+				if(seatArray[i][j].getnReservedId() == rnum) {
+					System.out.println();
+					System.out.println("-------------------");
+					System.out.println("--     Receipt   --");
+					System.out.println("-------------------");
+					
+					receiptMap.get(rnum);
+				}
+			}
+		}
 		
 	}
 }
