@@ -20,6 +20,9 @@ public class Receipt {
 
 	@Override
 	public String toString() {  // 티켓 결제 내용 출력
-		return "";
+		return "[ Client :\t" + client + " ]\n[ Product :\t" + productName +
+				" ]\n[ PayMethod :\t" + payMethod + " ]\n[ PayNumber :\t"
+				+ payNumber + " ]\n[ SubTotal :\t" + subTotalAmount + 
+				" ]\n[ Total :\t" + totalAmount + " ]\n";
 	}
 }

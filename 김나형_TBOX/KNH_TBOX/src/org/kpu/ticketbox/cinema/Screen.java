@@ -45,6 +45,7 @@ public abstract class Screen {
 		System.out.println(" 5. 좌석 결제 하기");
 		System.out.println(" 6. 티켓 출력 하기");
 		System.out.println(" 7. 메인 메뉴 이동");
+		System.out.println();
 	}
 	
 	public void showSeatMap () {// 상영관 좌석 예약 현황 보여주기	
@@ -87,6 +88,7 @@ public abstract class Screen {
 			
 			System.out.printf("행[%d] 열[%d] %d 예약번호로 접수되었습니다.\n", 
 					row + 1, col + 1, seatArray[row][col].getnReservedId());
+			System.out.println();
 			nCurrentReservedId++;
 		}	
 	}
@@ -156,6 +158,7 @@ public abstract class Screen {
 						System.out.printf("은행 결제가 완료되었습니다. : %.1f원\n", 
 								nTicketPrice * (1 + BankTransfer.BANK_TRANSFER_COMMISION));
 						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						System.out.println();
 						
 						Receipt receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
 						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
@@ -170,6 +173,7 @@ public abstract class Screen {
 						System.out.printf("카드 결제가 완료되었습니다. : %.1f원\n",
 								(double)nTicketPrice * (1 + CardPay.CARD_COMMISION));
 						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						System.out.println();
 						
 						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
 						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
@@ -184,6 +188,7 @@ public abstract class Screen {
 						System.out.printf("모바일 결제가 완료되었습니다. : %.1f원\n",
 								nTicketPrice * (1 + MobilePay.MOBILE_COMMISION));
 						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
+						System.out.println();
 						
 						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
 						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
@@ -195,7 +200,7 @@ public abstract class Screen {
 	}
 	
 	//티켓 영수증 출력
-	public void printTicket () {
+	public void printTicket() {
 		System.out.println(" [ 좌석 티켓 출력 ]");
 		System.out.print("예약 번호 입력 : ");
 		int rnum = scan.nextInt();
@@ -208,7 +213,8 @@ public abstract class Screen {
 					System.out.println("--     Receipt   --");
 					System.out.println("-------------------");
 					
-					receiptMap.get(rnum);
+					Receipt r = receiptMap.get(rnum);
+					System.out.println(r);
 				}
 			}
 		}
