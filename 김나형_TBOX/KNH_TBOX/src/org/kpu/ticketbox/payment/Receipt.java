@@ -25,4 +25,15 @@ public class Receipt {
 				+ payNumber + " ]\n[ SubTotal :\t" + subTotalAmount + 
 				" ]\n[ Total :\t" + totalAmount + " ]\n";
 	}
+	
+	//구분자(,)를 사용하여 한 줄에 출력
+	public String toBackupString() {
+		String tbox = client + "," + productName + "," + payMethod + "," + payNumber +
+				"," + subTotalAmount + "," + totalAmount;
+		return tbox;
+	}
+
+	public double getTotalAmount() {
+		return totalAmount;
+	}
 }

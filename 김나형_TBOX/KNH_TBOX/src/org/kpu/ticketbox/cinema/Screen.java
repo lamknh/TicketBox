@@ -15,6 +15,7 @@ public abstract class Screen {
 	protected String strMovieStory;// 상영중인 영화 줄거리
 	protected MovieTicket [][] seatArray; // 좌석 2 차원 배열
 	public abstract void showMovieInfo(); //영화 정보 보여주기
+	private int count = 0;
 	
 	Scanner scan = new Scanner(System.in);
 	
@@ -129,6 +130,9 @@ public abstract class Screen {
 	
 	public void payment() { // 결제 하기
 		BankTransfer bt = new BankTransfer();
+		CardPay cp = new CardPay();
+		MobilePay mp = new MobilePay();
+		
 		System.out.println(" [  좌석 예약 결제  ]");
 		System.out.print("예약 번호 입력 : ");
 		int rnum = scan.nextInt();
@@ -175,7 +179,7 @@ public abstract class Screen {
 						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
 						System.out.println();
 						
-						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
+						receipt = cp.charge(strMovieName, nTicketPrice, name, payment);
 						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
 						break;
 					case Pay.MOBILE_PHONE_PAYMENT:
@@ -190,10 +194,11 @@ public abstract class Screen {
 						seatArray[i][j].setcStatus(MovieTicket.SEAT_PAY_COMPLETION_MARK);
 						System.out.println();
 						
-						receipt = bt.charge(strMovieName, nTicketPrice, name, payment);
+						receipt = mp.charge(strMovieName, nTicketPrice, name, payment);
 						receiptMap.put(rnum, receipt);// 키 (예약 번호)+ Receipt 객체
 						break;
 					}
+					count++;
 				}
 			}
 		}
@@ -218,6 +223,12 @@ public abstract class Screen {
 				}
 			}
 		}
-		
+	}
+	
+	public HashMap<Integer, Receipt> getHashMap(){
+		return receiptMap;
+	}
+	public int getCount() {
+		return count;
 	}
 }
