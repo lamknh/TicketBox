@@ -84,8 +84,9 @@ public class TicketBox {
 			System.out.println("프리미엄 영화관 매출 백업 완료");
 			
 			System.out.println();
-			System.out.println("안녕히 가세요!");
-			System.exit(0);
+		}
+		else {
+			System.out.println("잘못된 비밀번호입니다.");
 		}
 	}
 }
